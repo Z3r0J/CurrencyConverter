@@ -1,0 +1,73 @@
+﻿@model Application.ViewModel.CurrencyInformationViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    const FunctionResult = () => {
+        const vActual = $("#ActualCurrency").val();
+        const vDestination = $("#DestinationCurrency").val();
+        const vAmount = $("#Amount").val();
+
+        if (vActual < 0) {
+            return;
+        }
+        else if (vDestination < 0) {
+            return;
+        }
+        else if (vAmount<1) {
+            return;
+        }
+        else {
+            $.ajax({
+                url: "@Url.Action("GetResponse","Converter")",
+                type: "POST",
+                dataType: 'html',
+                data: { "ActualCurrency": vActual, "DestinationCurrency": vDestination, "Amount": vAmount.trim() },
+                success: function (response) {
+                    console.log(response);
+
+                    $("#partialView").html(response);
+                }
+
+            });
+        }
+    }
+</script>
+
+<div class="row d-flex justify-content-center">
+    <div class="card col-12">
+        <form method="post" onsubmit="return false;">
+            <div class="row">
+                <div class="col-2">
+                    <label asp-for="ActualCurrency">From:</label>
+                    <select asp-for="ActualCurrency" id="ActualCurrency" onchange="FunctionResult()">
+                        <option value="-1">Select a Currency</option>
+                        <option value="1">Dominican Peso</option>
+                        <option value="2">US Dollar</option>
+                        <option value="3">Euro</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label asp-for="DestinationCurrency">To:</label>
+                    <select asp-for="DestinationCurrency" id="DestinationCurrency" onchange="FunctionResult()">
+                        <option value="-1">Select a Currency</option>
+                        <option value="1">Dominican Peso</option>
+                        <option value="2">US Dollar</option>
+                        <option value="3">Euro</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label asp-for="Amount">Amount:</label>
+                    <input type="number" step="any" name="Amount" asp-for="Amount" id="Amount" onchange="FunctionResult()"/>
+                </div>
+                <div class="col">
+                    <button onclick="FunctionResult()">Convert</button>
+                </div>
+            </div>
+        </form>
+        <div id="partialView">
+        </div>
+    </div>
+</div>
+
