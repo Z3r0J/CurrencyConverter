@@ -34,13 +34,24 @@
         }
     }
 
-    const Func = () => { $(".alert").alert('close') }
+    const closeAlert = () => { $(".alert").alert('close') }
+
+    const interChangeCurrency = () => {
+
+        const vActual = $("#ActualCurrency").val();
+        const vDestination = $("#DestinationCurrency").val();
+
+        $("#ActualCurrency").val(vDestination).trigger('change');
+        $("#DestinationCurrency").val(vActual).trigger('change');
+        vActual = "";
+        vDestination = "";
+    }
 </script>
 <div class="card bg-light form-shadow col-md-12">
     <div class="card-header form-header">Currency Converter</div>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong style="text-align:center;">The price of Dollar is 55.30 DOP and price of Euro is 58.40 DOP</strong>
-            <button type="button" class="btn-close" data-dismiss="alert" onclick="Func()" aria-label="Close">
+            <button type="button" class="btn-close" data-dismiss="alert" onclick="closeAlert()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
 </div>
@@ -54,6 +65,9 @@
                     <option value="2">US Dollar</option>
                     <option value="3">Euro</option>
                 </select>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" onclick="interChangeCurrency()" class="btn buttonChange"><i class="fa-solid fa-arrow-right-arrow-left arrow-style"></i></button>
             </div>
             <div class="col">
                 <label asp-for="DestinationCurrency" class="form-label">To:</label>
@@ -69,7 +83,7 @@
                 <input type="number" step="any" name="Amount" asp-for="Amount" id="Amount" onchange="FunctionResult()" class="form-control" />
             </div>
             <div class="col">
-                <button onclick="FunctionResult()" class="btn btn-success btn-style">Convert</button>
+                <button onclick="FunctionResult()" class="btn btn-converter btn-style">Convert</button>
             </div>
         </div>
     </form>
