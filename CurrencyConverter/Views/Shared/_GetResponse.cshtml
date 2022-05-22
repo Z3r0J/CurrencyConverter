@@ -3,9 +3,9 @@
     <div class="row form-design">
         <div class="col">
             <span class="text-response">
-                @Model.Amount @Model.ActualCurrency =
+                <img src="~/Images/{@Model.ActualCurrency}.png" />  @Model.Amount @Model.ActualCurrency =
             </span>
             <br>
-            <span class="second-text"> @Model.Total.ToString("n1") @Model.DestinationCurrency</span>
+            <span class="second-text"><img src="~/Images/{@Model.DestinationCurrency}.png" /> @Model.Total.ToString("n1") @Model.DestinationCurrency</span>
         </div>
     </div>
