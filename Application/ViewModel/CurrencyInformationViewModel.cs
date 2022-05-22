@@ -11,7 +11,5 @@ namespace Application.ViewModel
         public int ActualCurrency { get; set; }
         public int DestinationCurrency { get; set; }
         public double Amount { get; set; }
-
-        public double Total { get; set; } = 0;
     }
 }
