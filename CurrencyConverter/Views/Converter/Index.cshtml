@@ -33,41 +33,47 @@
             });
         }
     }
-</script>
 
-<div class="row d-flex justify-content-center">
-    <div class="card col-12">
-        <form method="post" onsubmit="return false;">
-            <div class="row">
-                <div class="col">
-                    <label asp-for="ActualCurrency">From:</label>
-                    <select asp-for="ActualCurrency" id="ActualCurrency" onchange="FunctionResult()">
-                        <option value="-1">Select a Currency</option>
-                        <option value="1">Dominican Peso</option>
-                        <option value="2">US Dollar</option>
-                        <option value="3">Euro</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <label asp-for="DestinationCurrency">To:</label>
-                    <select asp-for="DestinationCurrency" id="DestinationCurrency" onchange="FunctionResult()">
-                        <option value="-1">Select a Currency</option>
-                        <option value="1">Dominican Peso</option>
-                        <option value="2">US Dollar</option>
-                        <option value="3">Euro</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <label asp-for="Amount">Amount:</label>
-                    <input type="number" step="any" name="Amount" asp-for="Amount" id="Amount" onchange="FunctionResult()"/>
-                </div>
-                <div class="col">
-                    <button onclick="FunctionResult()">Convert</button>
-                </div>
+    const Func = () => { $(".alert").alert('close') }
+</script>
+<div class="card bg-light form-shadow col-md-12">
+    <div class="card-header form-header">Currency Converter</div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong style="text-align:center;">The price of Dollar is 55.30 DOP and price of Euro is 58.40 DOP</strong>
+            <button type="button" class="btn-close" data-dismiss="alert" onclick="Func()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+</div>
+    <form method="post" onsubmit="return false;" class="form-design">
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <label asp-for="ActualCurrency" class="form-label">From:</label>
+                <select asp-for="ActualCurrency" id="ActualCurrency" onchange="FunctionResult()" class="form-select">
+                    <option value="-1">Select a Currency</option>
+                    <option value="1">Dominican Peso</option>
+                    <option value="2">US Dollar</option>
+                    <option value="3">Euro</option>
+                </select>
             </div>
-        </form>
-        <div id="partialView">
+            <div class="col">
+                <label asp-for="DestinationCurrency" class="form-label">To:</label>
+                <select asp-for="DestinationCurrency" id="DestinationCurrency" onchange="FunctionResult()" class="form-select">
+                    <option value="-1">Select a Currency</option>
+                    <option value="1">Dominican Peso</option>
+                    <option value="2">US Dollar</option>
+                    <option value="3">Euro</option>
+                </select>
+            </div>
+            <div class="col">
+                <label asp-for="Amount" class="form-label">Amount:</label>
+                <input type="number" step="any" name="Amount" asp-for="Amount" id="Amount" onchange="FunctionResult()" class="form-control" />
+            </div>
+            <div class="col">
+                <button onclick="FunctionResult()" class="btn btn-success btn-style">Convert</button>
+            </div>
         </div>
+    </form>
+    <div class="container" id="partialView">
     </div>
 </div>
 

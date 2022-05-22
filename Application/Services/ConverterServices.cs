@@ -10,58 +10,19 @@ namespace Application.Services
             switch (vm.ActualCurrency)
             {
                 case (int)EnumCurrency.Currency.Peso:
-                    var convertpeso = new PesoServices();
-                    return convertpeso.PesoResponse(vm.DestinationCurrency, vm.Amount);
+                    var convertPeso = new PesoServices();
+                    return convertPeso.PesoResponse(vm.DestinationCurrency, vm.Amount);
 
-                #region UnitedStateDollar
                 case (int)EnumCurrency.Currency.Dollar:
-                    break;
-                #endregion
+                    var convertDollar = new DollarServices();
+                    return convertDollar.DollarResponse(vm.DestinationCurrency, vm.Amount);
 
-                #region Euro
                 case (int)EnumCurrency.Currency.Euro:
-                    switch (vm.DestinationCurrency)
-                    {
-                        case (int)EnumCurrency.Currency.Peso:
-                            response = new()
-                            {
-                                ActualCurrency = "EUR",
-                                DestinationCurrency = "DOP",
-                                Amount = vm.Amount,
-                                Total = vm.Amount * 58
-                            };
-                            return response;
-
-                        case (int)EnumCurrency.Currency.Dollar:
-                            response = new()
-                            {
-                                ActualCurrency = "EUR",
-                                DestinationCurrency = "USD",
-                                Amount = vm.Amount,
-                                Total = vm.Amount * 1.05
-                            };
-                            return response;
-
-                        case (int)EnumCurrency.Currency.Euro:
-                            response = new()
-                            {
-                                ActualCurrency = "EUR",
-                                DestinationCurrency = "EUR",
-                                Amount = vm.Amount,
-                                Total = vm.Amount * 1
-                            };
-                            return response;
+                    var convertEuro = new EuroServices();
+                    return convertEuro.EuroResponse(vm.DestinationCurrency, vm.Amount);
                         default:
-                            break;
+                    return new();
                     }
-                    break;
-                #endregion
-
-                default:
-                    break;
             }
-
-            return new();
         }
     }
-}

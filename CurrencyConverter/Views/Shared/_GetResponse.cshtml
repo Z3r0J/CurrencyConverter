@@ -1,3 +1,11 @@
 ﻿@model Application.ViewModel.CurrencyResponseViewModel
 
-<h1>Total @Model.Total</h1>
+    <div class="row form-design">
+        <div class="col">
+            <span class="text-response">
+                @Model.Amount @Model.ActualCurrency =
+            </span>
+            <br>
+            <span class="second-text"> @Model.Total.ToString("n1") @Model.DestinationCurrency</span>
+        </div>
+    </div>

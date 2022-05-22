@@ -8,46 +8,46 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class DollarServices
+    public class EuroServices
     {
         private CurrencyResponseViewModel response;
-        public CurrencyResponseViewModel DollarResponse(int Destination, double Amount) {
+        public CurrencyResponseViewModel EuroResponse(int Destination, double Amount)
+        {
 
             switch (Destination)
             {
                 case (int)EnumCurrency.Currency.Peso:
                     response = new()
                     {
-                        ActualCurrency = "USD",
+                        ActualCurrency = "EUR",
                         DestinationCurrency = "DOP",
                         Amount = Amount,
-                        Total = Amount * 55.30
+                        Total = Amount * 58.37
                     };
                     return response;
 
                 case (int)EnumCurrency.Currency.Dollar:
                     response = new()
                     {
-                        ActualCurrency = "USD",
+                        ActualCurrency = "EUR",
                         DestinationCurrency = "USD",
                         Amount = Amount,
-                        Total = Amount * 1
+                        Total = Amount * 1.05
                     };
                     return response;
 
                 case (int)EnumCurrency.Currency.Euro:
                     response = new()
                     {
-                        ActualCurrency = "USD",
+                        ActualCurrency = "EUR",
                         DestinationCurrency = "EUR",
                         Amount = Amount,
-                        Total = Amount * 0.94
+                        Total = Amount * 1
                     };
                     return response;
                 default:
                     return new();
             }
-
-            }
+        }
     }
 }
