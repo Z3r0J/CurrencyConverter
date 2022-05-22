@@ -10,6 +10,7 @@ namespace Application.ViewModel
     {
         public string ActualCurrency { get; set; }
         public string DestinationCurrency { get; set; }
+        public double Amount { get; set; }
         public double Total { get; set; }
     }
 }
