@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Application.Enums
 {
-    class EnumCurrency
+    public class EnumCurrency
     {
+        public enum Currency { 
+        Peso=1,
+        Dollar,
+        Euro
+        }
     }
 }

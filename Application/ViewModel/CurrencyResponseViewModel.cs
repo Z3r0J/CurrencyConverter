@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Application.ViewModel
 {
-    class CurrencyResponseViewModel
+    public class CurrencyResponseViewModel
     {
+        public string ActualCurrency { get; set; }
+        public string DestinationCurrency { get; set; }
+        public double Total { get; set; }
     }
 }
